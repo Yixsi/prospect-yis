@@ -1,5 +1,6 @@
 
-import { Notes } from "./components/Notes"
+import { Notes } from "./components/notes/Notes"
+import SearchBar from "./components/SearchBar"
 import { createClient } from "@supabase/supabase-js"
 const supabase = createClient(
   process.env.SUPABASE_URL,
@@ -12,11 +13,13 @@ export default async function Home() {
   const {data, error} = await supabase
     .from("Notes").select()
 
-  console.log('Notes', data)
+  // console.log('Notes', data)
 
   return (
     <main className="flex flex-col items-center p-24">
-        <Notes data={data}/>
+      <h1 className="text-4xl font-bold mb-8">Notes</h1>
+      <SearchBar />
+      <Notes data={data}/>
     </main>
   )
 }

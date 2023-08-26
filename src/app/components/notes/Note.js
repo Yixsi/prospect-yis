@@ -5,4 +5,4 @@ const Note = ({ title, text }) => (
   </div>
 );
 
-export default Note
+export default Note;

@@ -17,4 +17,4 @@ const EditIcon = () => {
   );
 }
 
-export default EditIcon
+export default EditIcon;

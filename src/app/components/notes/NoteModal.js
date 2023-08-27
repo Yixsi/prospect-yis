@@ -3,7 +3,6 @@ import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 
 const NoteModal = ({ currentNote, isOpen, onClose }) => {
-  console.log(currentNote);
   const [note, setNote] = useState({
     id: currentNote?.id,
     title: currentNote?.title,
@@ -28,7 +27,6 @@ const NoteModal = ({ currentNote, isOpen, onClose }) => {
       router.refresh();
       onClose();
     } else {
-      console.log(note);
       await fetch("/api/updateNote", {
         method: "PATCH",
         headers: {
@@ -56,13 +54,15 @@ const NoteModal = ({ currentNote, isOpen, onClose }) => {
   if (!isOpen) return null;
 
   return (
-    <div className="fixed top-0 left-0 w-full h-full flex items-center justify-center bg-black bg-opacity-50">
+    <div className="fixed top-0 left-0 w-full h-full flex items-center justify-center bg-black bg-opacity-80">
       <div className="bg-black relative border-white border rounded-lg w-96 p-4">
         <button className="text-white absolute top-2 right-2" onClick={onClose}>
           {" "}
           x{" "}
         </button>
-        <h3 className="text-xl font-bold text-white mb-4">{!Object.keys(currentNote).length ? 'Create' : 'Update'} note</h3>
+        <h3 className="text-xl font-bold text-white mb-4">
+          {!Object.keys(currentNote).length ? "Create" : "Update"} note
+        </h3>
         <form onSubmit={onSubmit}>
           <div className="mb-4">
             <label className="block text-sm font-semibold text-white mb-2">
@@ -72,10 +72,12 @@ const NoteModal = ({ currentNote, isOpen, onClose }) => {
               type="text"
               className="w-full p-2 border text-black rounded"
               value={note.title}
-              onChange={(e) => setNote({
-                ...note,
-                title: e.target.value
-              })} // update the note.title state
+              onChange={(e) =>
+                setNote({
+                  ...note,
+                  title: e.target.value,
+                })
+              } // update the note.title state
             />
           </div>
           <div className="mb-4">
@@ -86,13 +88,18 @@ const NoteModal = ({ currentNote, isOpen, onClose }) => {
               rows="5"
               className="w-full text-black p-2 border rounded"
               value={note.text}
-              onChange={(e) => setNote({
-                ...note,
-                text: e.target.value
-              })} // update the note.text state
+              onChange={(e) =>
+                setNote({
+                  ...note,
+                  text: e.target.value,
+                })
+              } // update the note.text state
             ></textarea>
           </div>
-          <button type="submit" className="bg-white text-black rounded p-2">
+          <button
+            type="submit"
+            className="bg-white text-black rounded p-2 border border-gray-300 hover:border-gray-500 font-normal hover:font-bold hover:bg-black hover:text-white"
+          >
             Save
           </button>
         </form>

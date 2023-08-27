@@ -43,15 +43,15 @@ const Notes = ({ data }) => {
 
   return (
     <div className="flex flex-col justify-center">
-      <header className="flex justify-between items-center">
+      <header className="flex flex-wrap justify-between items-center px-7">
         <h1 className="text-4xl font-bold mb-8">Notes</h1>
         <div className="flex flex-row items-center mb-4">
           <SearchBar search={search} setSearch={setSearch} />
           <button
-            className="bg-white rounded-full text-black text-3xl focus:outline-none focus:ring-2 focus:ring-blue-200 w-16"
+            className="bg-white rounded-lg text-black focus:outline-none focus:ring-2 focus:ring-blue-200 w-16 text-sm h-10"
             onClick={openModal}
           >
-            +
+            Add
           </button>
         </div>
       </header>

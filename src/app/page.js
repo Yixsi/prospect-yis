@@ -8,8 +8,7 @@ export default async function Home() {
   // console.log('Notes', data)
 
   return (
-    <main className="flex flex-col items-center p-24">
-      <h1 className="text-4xl font-bold mb-8">Notes</h1>
+    <main className="p-24">
       <Notes data={data} />
     </main>
   );

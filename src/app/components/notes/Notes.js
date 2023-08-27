@@ -42,19 +42,27 @@ const Notes = ({ data }) => {
   };
 
   return (
-    <div className="flex flex-col items-center">
-      <SearchBar search={search} setSearch={setSearch} />
-      <NoteModal isOpen={isOpen} onClose={handleClose} currentNote={currentNote}/>
-      <div className="flex items-center mb-4 w-full justify-center">
-        <h1 className="text-2xl font-semibold mr-10">Notes</h1>
-        <button
-          className="bg-white rounded-full text-black text-3xl focus:outline-none focus:ring-2 focus:ring-blue-200 w-16"
-          onClick={openModal}
-        >
-          +
-        </button>
+    <div className="flex flex-col justify-center">
+      <header className="flex justify-between items-center">
+        <h1 className="text-4xl font-bold mb-8">Notes</h1>
+        <div className="flex flex-row items-center mb-4">
+          <SearchBar search={search} setSearch={setSearch} />
+          <button
+            className="bg-white rounded-full text-black text-3xl focus:outline-none focus:ring-2 focus:ring-blue-200 w-16"
+            onClick={openModal}
+          >
+            +
+          </button>
+        </div>
+      </header>
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3">
+        {renderNotes()}
       </div>
-      {renderNotes()}
+      <NoteModal
+        isOpen={isOpen}
+        onClose={handleClose}
+        currentNote={currentNote}
+      />
     </div>
   );
 };
